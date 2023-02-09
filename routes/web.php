@@ -25,6 +25,13 @@ Route::get('/book', function () {
 });
 
 Route::prefix('/admin')->group(function(){
+    Route::get('/',function(){return redirect()->back();});
     Route::get("/login",[AuthController::class ,'index']);
+    Route::post("/login",[AuthController::class ,'login'])->name('login');
+    Route::get("/logout",[AuthController::class ,'logout'])->name('logout');
+    
+    Route::get('/dashboard',function(){
+        return view('admin.dashboard');
+    });
 });
 
