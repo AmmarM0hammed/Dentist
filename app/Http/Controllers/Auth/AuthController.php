@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function index(){
-        return view('auth.login');
+        if(!auth()->check())
+            return view('auth.login');
+        return view('admin.dashboard');
     }
     public function logout(){
         Auth::logout();
@@ -26,8 +28,8 @@ class AuthController extends Controller
 
        // dd($data);
         if(Auth::attempt($data))
-            return response(Auth::user()->name);
+            return redirect()->route("dashboard");
 
-        return back()->with("error" , "Wrong E-mail or Password");
+       return redirect()->back()->with('error',"Wrong E-mail or Password");
     }
 }

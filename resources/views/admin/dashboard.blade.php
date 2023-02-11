@@ -2,6 +2,8 @@
 
 @section("content")
 
-Home
+<section>
+    
+</section>
 
 @endsection

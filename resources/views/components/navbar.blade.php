@@ -14,7 +14,7 @@
        
         <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="/" class="btn btn-ghost">{{__("web.home")}}</a></li>
         <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="/about" class="btn btn-ghost">{{__("web.about")}}</a></li>
-        <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="/contact" class="btn btn-ghost">{{__("web.contact")}}</a></li>
+        {{-- <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="/contact" class="btn btn-ghost">{{__("web.contact")}}</a></li> --}}
         <li class="{{ Request::is('service') ? 'active' : '' }}"><a href="/service" class="btn btn-ghost">{{__("web.service")}}</a></li>
       
         <li><a href="#" class="btn btn-ghost shadow-lg tracking-widest text-md active:text-primary"><i class='bx bx-phone text-xl text-primary '></i> 07729830123</a></li>

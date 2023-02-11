@@ -13,11 +13,11 @@
         <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content p-10">
           
-          <p class="text-3xl font-semibold first-letter:uppercase">
+          <p class="text-3xl mt-20 lg:mt-0 font-semibold first-letter:uppercase">
             {{ request()->segment(count(request()->segments())) }}
           </p>
           @yield("content")
-          <div class="navbar bg-white shadow-lg h-24 lg:px-32 fixed top-0 z-50 lg:hidden">
+          <div class="navbar bg-white shadow-lg h-24 lg:px-32 fixed top-0 left-0 z-50 lg:hidden">
             <div class="flex-1">
                 <a class="btn btn-ghost normal-case text-xl space-x-2">
                   <img src="{{asset('../assets/image/logo.svg')}}" class="w-9" />
@@ -37,19 +37,23 @@
           <ul class="menu p-4 w-80 space-y-5 bg-white  text-base-content">
                 <div class="btn btn-ghost mt-5 flex justify-start normal-case text-xl space-x-2 mb-5">
                   <img src="{{asset('../assets/image/logo.svg')}}" class="w-9" />
-                  <span class="text-xl">Dentiest</span>
+                  <span class="text-xl">{{config('app.name')}}</span>
                 </div>
-                
-                <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}"><a><i class='bx bx-home-alt text-2xl font-bold'></i> Home</a></li>
-                <li class="{{ Request::is('admin/users') ? 'active' : '' }}"><a><i class='bx bx-user text-2xl font-bold'></i> Users</a></li>
-                <li class="{{ Request::is('admin/booklist') ? 'active' : '' }}">
-                <div class="indicator w-full flex justify-between items-center">
-                    <a><i class='bx bx-bell text-2xl font-bold relative top-1'></i> Request</a>
-                    <span class="indicator-item badge badge-error relative right-3">0</span> 
-                </div>
+                <div class="divider mx-5"></div> 
+
+                <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}"><a href="{{ route('dashboard') }}"><i class='bx bx-home-alt text-2xl font-bold'></i> Home</a></li>
+                <li class="{{ Request::is('admin/users') ? 'active' : '' }}"><a href="{{ route('admin.user') }}"><i class='bx bx-user text-2xl font-bold'></i> Users</a></li>
+                <li class="{{ Request::is('admin/request') ? 'active' : '' }} relative ">
+                  <a href="{{ route('admin.request') }}"><i class='bx bx-bell text-2xl font-bold relative top-1'></i> Request
+                    <span class="font-normal w-fit h-fit px-2 rounded-full absolute right-2 text-white bg-red-500"> 
+                     {{DB::table('appoenmits')->where('state','=','1')->get()->count()}}
+                    </span>
+                  </a>
                 </li>
 
-                <li class=" absolute w-72 bottom-16"><a href="#"><i class='bx bx-user text-2xl font-bold '></i> Ammar Mohammed</a></li>
+                <li class="{{ Request::is('admin/list') ? 'active' : '' }}"><a href="{{ route('admin.list') }}"><i class='bx bx-list-check text-3xl font-bold'></i> List</a></li>
+
+                <li class=" absolute w-72 bottom-16"><a href="#"><i class='bx bx-user text-2xl font-bold '></i> {{auth()->user()->name}}</a></li>
                 <li class="absolute w-72 bottom-5"><a href="{{route('logout')}}"><i class='bx bx-log-out text-2xl font-bold '></i> Logout</a></li>
             
           </ul>

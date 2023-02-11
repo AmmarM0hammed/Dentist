@@ -5,8 +5,11 @@ module.exports = {
         './resources/views/*.blade.php',
     ],
 
-    plugins: [require("daisyui")],
-
+    plugins: [
+      require("daisyui"),
+      
+    ],
+    
     daisyui: {
         styled: true,
          themes: [
